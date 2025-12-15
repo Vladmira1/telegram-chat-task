@@ -16,7 +16,7 @@ function App() {
 
   // Загрузка сообщений при запуске
   useEffect(() => {
-    fetch('http://localhost:8000/messages')
+    fetch('https://telegram-chat-backend-9lwd.onrender.com/messages')
       .then(res => res.json())
       .then(data => setMessages(data))
       .catch(error => console.error('Error loading messages:', error));
@@ -42,7 +42,7 @@ function App() {
     };
 
     try {
-      const response = await fetch('http://localhost:8000/messages', {
+      const response = await fetch('https://telegram-chat-backend-9lwd.onrender.com/messages', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(messageToSend)
@@ -51,6 +51,7 @@ function App() {
       if (!response.ok) throw new Error('Failed to send message');
       
       const data = await response.json();
+      // ДОБАВЛЯЕМ СООБЩЕНИЕ СРАЗУ
       setMessages(prev => [...prev, data]);
       setNewMessage('');
     } catch (error) {
