@@ -1,8 +1,8 @@
-/* Telegram Chat - Mobile Optimized */
+/* Telegram Chat - Mobile Optimized - UPDATED COLORS */
 :root {
   --tg-blue: #3390ec;
-  --tg-chat-bg: #e1f5d5;
-  --tg-message-green: #e2ffc7;
+  --tg-chat-bg: #d0e8c4; /* Более насыщенный зеленый фон экрана */
+  --tg-message-green: #f0fae6; /* Светлее - фон внутри сообщений */
   --tg-message-white: #ffffff;
   --tg-text-dark: #000000;
   --tg-text-gray: #707579;
@@ -30,17 +30,17 @@ body {
   bottom: 0;
 }
 
-/* ФОН ЧАТА - ЗЕЛЕНЫЙ С ГРАДИЕНТОМ */
+/* ФОН ЧАТА - НАСЫЩЕННЫЙ ЗЕЛЕНЫЙ */
 .chat-container {
   flex-grow: 1;
   padding: 16px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  background-color: #e1f5d5;
+  background-color: var(--tg-chat-bg); /* Более насыщенный зеленый */
   background-image: 
-    radial-gradient(circle at 0% 0%, rgba(255, 235, 150, 0.2) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(255, 235, 150, 0.2) 0%, transparent 50%);
+    radial-gradient(circle at 0% 0%, rgba(120, 180, 80, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(120, 180, 80, 0.15) 0%, transparent 50%);
 }
 
 /* ШАПКА */
@@ -92,10 +92,11 @@ body {
   position: relative;
   font-size: 15px;
   line-height: 1.4;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 .my-message {
-  background-color: var(--tg-message-green);
+  background-color: var(--tg-message-green); /* Светлее - фон внутри сообщений */
   color: var(--tg-text-dark);
   align-self: flex-end;
   border-bottom-right-radius: 4px;
@@ -127,10 +128,19 @@ body {
   color: var(--tg-text-gray);
 }
 
+/* Зеленые галочки для моих сообщений */
+.my-message .message-time::after {
+  content: '✓✓';
+  color: #4caf50;
+  font-size: 10px;
+  margin-left: 6px;
+  font-weight: 600;
+}
+
 /* ПОЛЕ ВВОДА - КАК В TELEGRAM */
 .input-area {
   padding: 12px 16px;
-  background-color: #f1f8e9;
+  background-color: #eaf4e1; /* Светло-зеленый фон панели ввода */
   display: flex;
   align-items: center;
 }
@@ -141,7 +151,7 @@ body {
   display: flex;
   background-color: white;
   border-radius: 24px; /* Скругленные углы */
-  border: 1px solid white; /* Тонкая белая рамка */
+  border: 1px solid #d0e8c4; /* Тонкая зеленая рамка */
   padding: 6px 6px 6px 16px;
   align-items: center;
   position: relative;
@@ -162,6 +172,10 @@ body {
 .input-area input::placeholder {
   color: var(--tg-text-gray);
   font-weight: 400;
+}
+
+.input-area input:focus {
+  background-color: transparent;
 }
 
 /* Кнопка отправки - В ПРАВОМ УГЛУ */
@@ -223,8 +237,12 @@ body {
 }
 
 .chat-container::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(80, 120, 60, 0.25); /* Зеленый скроллбар */
   border-radius: 2px;
+}
+
+.chat-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(80, 120, 60, 0.35);
 }
 
 /* ДЕСКТОПНАЯ ВЕРСИЯ */
@@ -248,4 +266,20 @@ body {
   .message {
     max-width: 75%;
   }
+}
+
+/* Анимация появления сообщений */
+@keyframes messageAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message {
+  animation: messageAppear 0.2s ease-out;
 }
