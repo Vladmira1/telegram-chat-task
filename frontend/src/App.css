@@ -1,0 +1,149 @@
+/* Telegram-like styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0e1621;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.App {
+  max-width: 500px;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #0e1621;
+  color: #e1e1e3;
+}
+
+.header {
+  background-color: #17212b;
+  padding: 15px 20px;
+  border-bottom: 1px solid #242f3d;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #5288c1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+}
+
+.contact-info h2 {
+  margin: 0;
+  font-size: 16px;
+  color: white;
+}
+
+.contact-info p {
+  margin: 3px 0 0 0;
+  font-size: 13px;
+  color: #7f91a4;
+}
+
+.chat-container {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  border-radius: 15px;
+  max-width: 70%;
+  word-wrap: break-word;
+  position: relative;
+}
+
+.my-message {
+  background-color: #2b5278;
+  align-self: flex-end;
+  border-bottom-right-radius: 5px;
+}
+
+.other-message {
+  background-color: #182533;
+  align-self: flex-start;
+  border-bottom-left-radius: 5px;
+}
+
+.message p {
+  margin: 0 0 5px 0;
+  line-height: 1.4;
+}
+
+.message-time {
+  font-size: 11px;
+  opacity: 0.7;
+  text-align: right;
+  margin-top: 3px;
+}
+
+.input-area {
+  padding: 15px;
+  background-color: #17212b;
+  border-top: 1px solid #242f3d;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.input-area input {
+  flex-grow: 1;
+  padding: 12px 20px;
+  background-color: #242f3d;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 15px;
+  outline: none;
+}
+
+.input-area input::placeholder {
+  color: #7f91a4;
+}
+
+.input-area button {
+  background-color: #2b5278;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.input-area button:hover {
+  background-color: #3a6da0;
+}
+
+.input-area button:disabled {
+  background-color: #1c3b5a;
+  cursor: not-allowed;
+}
+
+/* Scrollbar styling */
+.chat-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-container::-webkit-scrollbar-track {
+  background: #0e1621;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+  background: #2b5278;
+  border-radius: 3px;
+}
