@@ -112,11 +112,11 @@ function App() {
           disabled={isSending}
         />
         <button 
+          className="send-button"
           onClick={sendMessage} 
           disabled={!newMessage.trim() || isSending}
-        >
-          {isSending ? 'Отправка...' : 'Отправить'}
-        </button>
+          title="Отправить"
+        />
       </div>
     </div>
   );

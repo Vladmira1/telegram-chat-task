@@ -1,65 +1,87 @@
-/* Telegram Classic Light Theme - Official Colors */
+/* Telegram Classic Light Theme - Enhanced */
 :root {
-  /* Стандартные переменные Telegram Web App для светлой темы */
-  --tg-theme-bg-color: #ffffff;
-  --tg-theme-text-color: #000000;
-  --tg-theme-hint-color: #707579;
-  --tg-theme-link-color: #3390ec;
-  --tg-theme-button-color: #3390ec;
-  --tg-theme-button-text-color: #ffffff;
-  --tg-theme-secondary-bg-color: #f1f1f1;
-  --tg-theme-header-bg-color: #3390ec;
-  --tg-theme-accent-text-color: #3390ec;
-  --tg-theme-section-bg-color: #ffffff;
-  --tg-theme-section-header-text-color: #3390ec;
-  --tg-theme-subtitle-text-color: #707579;
-  --tg-theme-destructive-text-color: #ff3b30;
+  --tg-blue: #3390ec;
+  --tg-light-green: #e6ffd7;
+  --tg-chat-bg: #e7ebde;
+  --tg-message-green: #e2ffc7;
+  --tg-message-white: #ffffff;
+  --tg-text-dark: #000000;
+  --tg-text-gray: #707579;
+  --tg-border-light: #e0e0e0;
+  --tg-input-bg: #f1f8e9;
 }
 
 /* Базовые стили */
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-  background-color: var(--tg-theme-secondary-bg-color);
-  color: var(--tg-theme-text-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
 }
 
+/* Основной контейнер - чуть уже */
 .App {
-  max-width: 800px;
-  margin: 0 auto;
+  width: 95%;
+  max-width: 420px;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--tg-theme-bg-color);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Шапка - синяя как в Telegram */
+/* Фон чата с градиентом и орнаментом */
+.App::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    /* Желтый градиент по углам */
+    radial-gradient(circle at 0% 0%, rgba(255, 235, 150, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(255, 235, 150, 0.15) 0%, transparent 50%),
+    /* Основной зеленый фон */
+    linear-gradient(135deg, var(--tg-chat-bg) 0%, #e0e8d0 100%),
+    /* Полупрозрачные иконки еды */
+    url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg' opacity='0.05'%3E%3Cg%3E%3Ccircle cx='40' cy='60' r='8' fill='%233390ec'/%3E%3Ccircle cx='160' cy='80' r='6' fill='%23ff6b6b'/%3E%3Crect x='100' y='40' width='12' height='12' rx='2' fill='%2333d6a6'/%3E%3Ccircle cx='80' cy='140' r='7' fill='%23ffc042'/%3E%3Cpolygon points='140,120 150,130 130,130' fill='%239d6ef1'/%3E%3Crect x='30' y='120' width='14' height='14' rx='3' fill='%23ff8e43'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover, cover, cover, 200px 200px;
+  background-position: top left, bottom right, center, center;
+  z-index: -1;
+}
+
+/* Шапка */
 .header {
-  background-color: var(--tg-theme-header-bg-color);
+  background-color: var(--tg-blue);
   padding: 12px 16px;
   display: flex;
   align-items: center;
   gap: 12px;
   color: white;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: white;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--tg-theme-header-bg-color);
+  color: white;
   font-weight: 600;
   font-size: 18px;
   flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .contact-info h2 {
@@ -76,27 +98,29 @@ body {
   font-weight: 400;
 }
 
-/* Фон чата - классический светло-серый */
+/* Контейнер сообщений */
 .chat-container {
   flex-grow: 1;
   padding: 16px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  background-color: #e5e5e5;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23000000' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+  position: relative;
+  z-index: 1;
 }
 
 /* Сообщения */
 .message {
   margin-bottom: 8px;
-  padding: 8px 12px;
-  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  max-width: 75%;
   word-wrap: break-word;
+  position: relative;
   font-size: 15px;
   line-height: 1.4;
-  position: relative;
-  animation: messageAppear 0.2s ease-out;
+  animation: messageAppear 0.25s ease-out;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 @keyframes messageAppear {
@@ -110,102 +134,153 @@ body {
   }
 }
 
-/* Мои сообщения - справа, синий цвет */
+/* Мои сообщения - светло-зеленые */
 .my-message {
-  background-color: var(--tg-theme-button-color);
-  color: var(--tg-theme-button-text-color);
+  background-color: var(--tg-message-green);
+  color: var(--tg-text-dark);
   align-self: flex-end;
-  border-radius: 18px 18px 4px 18px;
-  margin-left: 20%;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  border-bottom-right-radius: 4px;
+  margin-left: auto;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* Сообщения собеседника - слева, белый цвет */
+.my-message::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 10px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid var(--tg-message-green);
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+
+/* Сообщения собеседника - белые */
 .other-message {
-  background-color: white;
-  color: var(--tg-theme-text-color);
+  background-color: var(--tg-message-white);
+  color: var(--tg-text-dark);
   align-self: flex-start;
-  border-radius: 18px 18px 18px 4px;
-  margin-right: 20%;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+  border-bottom-left-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.other-message::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 10px;
+  width: 0;
+  height: 0;
+  border-right: 6px solid var(--tg-message-white);
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
 }
 
 .message p {
-  margin: 0;
+  margin: 0 0 5px 0;
   padding: 0;
 }
 
 .message-time {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--tg-text-gray);
   text-align: right;
   margin-top: 4px;
-  float: right;
-  margin-left: 8px;
+  opacity: 0.7;
   font-weight: 400;
 }
 
 .other-message .message-time {
-  color: var(--tg-theme-hint-color);
+  color: var(--tg-text-gray);
 }
 
-/* Панель ввода */
+/* Поле ввода */
 .input-area {
   padding: 12px 16px;
-  background-color: var(--tg-theme-secondary-bg-color);
-  border-top: 1px solid #dcdcdc;
+  background-color: var(--tg-input-bg);
+  border-top: 1px solid var(--tg-border-light);
   display: flex;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
-  position: sticky;
-  bottom: 0;
-  z-index: 100;
+  position: relative;
+  z-index: 10;
+  border-radius: 20px 20px 0 0;
+  margin: 0 10px 10px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .input-area input {
   flex-grow: 1;
-  padding: 12px 16px;
+  padding: 12px 18px;
   background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 21px;
-  color: var(--tg-theme-text-color);
+  border: 1px solid var(--tg-border-light);
+  border-radius: 20px;
+  color: var(--tg-text-dark);
   font-size: 15px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: all 0.2s;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .input-area input:focus {
-  border-color: var(--tg-theme-button-color);
+  border-color: var(--tg-blue);
+  box-shadow: 0 0 0 2px rgba(51, 144, 236, 0.1);
 }
 
 .input-area input::placeholder {
-  color: var(--tg-theme-hint-color);
+  color: var(--tg-text-gray);
+  font-weight: 400;
 }
 
-.input-area button {
-  background-color: var(--tg-theme-button-color);
-  color: var(--tg-theme-button-text-color);
+/* Кнопка отправки - синий кружок с самолетиком */
+.send-button {
+  background-color: var(--tg-blue);
+  color: white;
   border: none;
-  border-radius: 21px;
-  padding: 12px 24px;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
   cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
   flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(51, 144, 236, 0.3);
+  padding: 0;
+  position: relative;
 }
 
-.input-area button:hover {
+.send-button:hover {
   background-color: #2a7bc9;
+  transform: scale(1.05);
+  box-shadow: 0 3px 8px rgba(51, 144, 236, 0.4);
 }
 
-.input-area button:active {
+.send-button:active {
   transform: scale(0.98);
 }
 
-.input-area button:disabled {
+.send-button:disabled {
   background-color: #a0c9f0;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Иконка самолетика внутри кнопки */
+.send-button::after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M2.01 21L23 12 2.01 3 2 10l15 2-15 2z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotate(45deg);
+  margin-left: 2px;
 }
 
 /* Скроллбар */
@@ -214,22 +289,23 @@ body {
 }
 
 .chat-container::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.03);
   border-radius: 3px;
 }
 
 .chat-container::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.15);
   border-radius: 3px;
 }
 
 .chat-container::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.25);
 }
 
 /* Адаптивность */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .App {
+    width: 100%;
     max-width: 100%;
     border-radius: 0;
   }
@@ -239,10 +315,23 @@ body {
   }
   
   .input-area {
+    margin: 0 8px 8px 8px;
     padding: 10px 14px;
   }
   
-  .input-area button {
-    padding: 10px 20px;
+  .send-button {
+    width: 40px;
+    height: 40px;
   }
+}
+
+/* Эффект для активного состояния */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.send-button:not(:disabled):hover::after {
+  animation: pulse 0.5s ease-in-out;
 }
