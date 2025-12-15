@@ -6,6 +6,14 @@ from typing import List
 import sqlite3
 import uuid
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Разрешить ВСЕ домены (только для разработки!)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app = FastAPI(title="Telegram Chat API")
 
 # Разрешаем запросы с фронтенда
