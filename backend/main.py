@@ -6,31 +6,28 @@ from typing import List
 import sqlite3
 import uuid
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Разрешить ВСЕ домены (только для разработки!)
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 app = FastAPI(title="Telegram Chat API")
 
-# Разрешаем запросы с фронтенда
+# ========== НАСТРОЙКА CORS ==========
+# Разрешаем запросы с фронтенда на Netlify и локальной разработки
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Для локальной разработки
+    allow_origins=[
+        "http://localhost:3000",  # для локальной разработки
+        "https://telegram-chat-task-frontend.netlify.app"  # ваш фронтенд на Netlify
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+# =====================================
 
 # Модель для сообщения
 class Message(BaseModel):
-    id: str
+    id: str = ""
     text: str
-    timestamp: str
-    isMine: bool
+    timestamp: str = ""
+    isMine: bool = True
 
 # ========== РАБОТА С БАЗОЙ ДАННЫХ ==========
 def get_db_connection():
