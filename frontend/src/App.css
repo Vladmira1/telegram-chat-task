@@ -1,77 +1,69 @@
-/* Telegram Classic Light Theme - Enhanced */
+/* Telegram Classic - Чистая версия */
 :root {
   --tg-blue: #3390ec;
-  --tg-light-green: #e6ffd7;
   --tg-chat-bg: #e7ebde;
   --tg-message-green: #e2ffc7;
   --tg-message-white: #ffffff;
   --tg-text-dark: #000000;
   --tg-text-gray: #707579;
-  --tg-border-light: #e0e0e0;
-  --tg-input-bg: #f1f8e9;
+  --tg-border-light: #d0e0c0;
 }
 
-/* Базовые стили */
 body {
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background-color: #f8f9fa;
+  background-color: #f0f2f5;
   display: flex;
   justify-content: center;
+  align-items: center;
   min-height: 100vh;
 }
 
-/* Основной контейнер - чуть уже */
+/* Основной контейнер - ЕЩЕ ШИРЕ */
 .App {
-  width: 95%;
-  max-width: 420px;
+  width: 100%;
+  max-width: 520px;
   height: 100vh;
+  max-height: 900px;
   display: flex;
   flex-direction: column;
   background-color: white;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
   position: relative;
   overflow: hidden;
 }
 
-/* Фон чата с градиентом и орнаментом */
-.App::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    /* Желтый градиент по углам */
-    radial-gradient(circle at 0% 0%, rgba(255, 235, 150, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(255, 235, 150, 0.15) 0%, transparent 50%),
-    /* Основной зеленый фон */
-    linear-gradient(135deg, var(--tg-chat-bg) 0%, #e0e8d0 100%),
-    /* Полупрозрачные иконки еды */
-    url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg' opacity='0.05'%3E%3Cg%3E%3Ccircle cx='40' cy='60' r='8' fill='%233390ec'/%3E%3Ccircle cx='160' cy='80' r='6' fill='%23ff6b6b'/%3E%3Crect x='100' y='40' width='12' height='12' rx='2' fill='%2333d6a6'/%3E%3Ccircle cx='80' cy='140' r='7' fill='%23ffc042'/%3E%3Cpolygon points='140,120 150,130 130,130' fill='%239d6ef1'/%3E%3Crect x='30' y='120' width='14' height='14' rx='3' fill='%23ff8e43'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: cover, cover, cover, 200px 200px;
-  background-position: top left, bottom right, center, center;
-  z-index: -1;
+/* ФОН ЧАТА - ТЕПЕРЬ ТОЧНО ЗЕЛЕНЫЙ */
+.chat-container {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #e1f5d5;
+  background-image: 
+    /* Желтый градиент в углах */
+    radial-gradient(circle at 0% 0%, rgba(255, 235, 150, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(255, 235, 150, 0.3) 0%, transparent 50%),
+    /* Орнамент иконок */
+    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg' opacity='0.04'%3E%3Cpath d='M20,20 Q30,15 40,20 T60,20' stroke='%233390ec' fill='none'/%3E%3Ccircle cx='60' cy='50' r='3' fill='%23ff6b6b'/%3E%3Crect x='25' y='45' width='6' height='6' rx='1' fill='%2333d6a6'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: auto, auto, 80px 80px;
+  background-repeat: no-repeat, no-repeat, repeat;
 }
 
 /* Шапка */
 .header {
   background-color: var(--tg-blue);
-  padding: 12px 16px;
+  padding: 14px 20px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   color: white;
-  position: relative;
-  z-index: 10;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   display: flex;
@@ -79,102 +71,51 @@ body {
   justify-content: center;
   color: white;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 20px;
   flex-shrink: 0;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.4);
 }
 
 .contact-info h2 {
   margin: 0;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   color: white;
 }
 
 .contact-info p {
-  margin: 3px 0 0 0;
+  margin: 4px 0 0 0;
   font-size: 13px;
   color: rgba(255, 255, 255, 0.9);
   font-weight: 400;
 }
 
-/* Контейнер сообщений */
-.chat-container {
-  flex-grow: 1;
-  padding: 16px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 1;
-}
-
 /* Сообщения */
 .message {
-  margin-bottom: 8px;
-  padding: 10px 14px;
+  margin-bottom: 10px;
+  padding: 11px 15px;
   border-radius: 18px;
   max-width: 75%;
   word-wrap: break-word;
   position: relative;
   font-size: 15px;
   line-height: 1.4;
-  animation: messageAppear 0.25s ease-out;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
-@keyframes messageAppear {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Мои сообщения - светло-зеленые */
 .my-message {
   background-color: var(--tg-message-green);
   color: var(--tg-text-dark);
   align-self: flex-end;
   border-bottom-right-radius: 4px;
   margin-left: auto;
-  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.my-message::after {
-  content: '';
-  position: absolute;
-  right: -6px;
-  top: 10px;
-  width: 0;
-  height: 0;
-  border-left: 6px solid var(--tg-message-green);
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
-}
-
-/* Сообщения собеседника - белые */
 .other-message {
   background-color: var(--tg-message-white);
   color: var(--tg-text-dark);
   align-self: flex-start;
   border-bottom-left-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.other-message::before {
-  content: '';
-  position: absolute;
-  left: -6px;
-  top: 10px;
-  width: 0;
-  height: 0;
-  border-right: 6px solid var(--tg-message-white);
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
 }
 
 .message p {
@@ -188,44 +129,41 @@ body {
   text-align: right;
   margin-top: 4px;
   opacity: 0.7;
-  font-weight: 400;
 }
 
 .other-message .message-time {
   color: var(--tg-text-gray);
 }
 
-/* Поле ввода */
+/* ПОЛЕ ВВОДА - КАК В TELEGRAM */
 .input-area {
-  padding: 12px 16px;
-  background-color: var(--tg-input-bg);
-  border-top: 1px solid var(--tg-border-light);
+  padding: 14px 16px;
+  background-color: #f1f8e9; /* Светло-зеленый фон всей панели */
   display: flex;
-  gap: 10px;
+  gap: 0;
   align-items: center;
-  position: relative;
-  z-index: 10;
-  border-radius: 20px 20px 0 0;
-  margin: 0 10px 10px 10px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Контейнер для инпута и кнопки - БЕЗ ВНЕШНИХ РАМОК */
+.input-container {
+  flex-grow: 1;
+  display: flex;
+  background-color: white;
+  border-radius: 24px;
+  padding: 8px 8px 8px 20px;
+  align-items: center;
+  border: 1px solid var(--tg-border-light);
 }
 
 .input-area input {
   flex-grow: 1;
-  padding: 12px 18px;
-  background-color: white;
-  border: 1px solid var(--tg-border-light);
-  border-radius: 20px;
+  padding: 10px 0;
+  background-color: transparent;
+  border: none;
   color: var(--tg-text-dark);
-  font-size: 15px;
+  font-size: 16px;
   outline: none;
-  transition: all 0.2s;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.input-area input:focus {
-  border-color: var(--tg-blue);
-  box-shadow: 0 0 0 2px rgba(51, 144, 236, 0.1);
+  width: 100%;
 }
 
 .input-area input::placeholder {
@@ -233,7 +171,7 @@ body {
   font-weight: 400;
 }
 
-/* Кнопка отправки - синий кружок с самолетиком */
+/* Кнопка отправки - ВНУТРИ ПОЛЯ ВВОДА */
 .send-button {
   background-color: var(--tg-blue);
   color: white;
@@ -247,18 +185,16 @@ body {
   justify-content: center;
   transition: all 0.2s;
   flex-shrink: 0;
-  box-shadow: 0 2px 6px rgba(51, 144, 236, 0.3);
+  margin-left: 8px;
   padding: 0;
-  position: relative;
 }
 
-.send-button:hover {
+.send-button:hover:not(:disabled) {
   background-color: #2a7bc9;
   transform: scale(1.05);
-  box-shadow: 0 3px 8px rgba(51, 144, 236, 0.4);
 }
 
-.send-button:active {
+.send-button:active:not(:disabled) {
   transform: scale(0.98);
 }
 
@@ -266,21 +202,19 @@ body {
   background-color: #a0c9f0;
   cursor: not-allowed;
   transform: none;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Иконка самолетика внутри кнопки */
+/* Иконка самолетика */
 .send-button::after {
   content: '';
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M2.01 21L23 12 2.01 3 2 10l15 2-15 2z'/%3E%3C/svg%3E");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  transform: rotate(45deg);
-  margin-left: 2px;
+  transform: rotate(45deg) translateX(1px);
 }
 
 /* Скроллбар */
@@ -289,8 +223,7 @@ body {
 }
 
 .chat-container::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.03);
-  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .chat-container::-webkit-scrollbar-thumb {
@@ -298,40 +231,19 @@ body {
   border-radius: 3px;
 }
 
-.chat-container::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.25);
-}
-
 /* Адаптивность */
-@media (max-width: 480px) {
+@media (max-width: 560px) {
   .App {
-    width: 100%;
     max-width: 100%;
+    height: 100vh;
     border-radius: 0;
+  }
+  
+  .chat-container {
+    padding: 16px;
   }
   
   .message {
     max-width: 85%;
   }
-  
-  .input-area {
-    margin: 0 8px 8px 8px;
-    padding: 10px 14px;
-  }
-  
-  .send-button {
-    width: 40px;
-    height: 40px;
-  }
-}
-
-/* Эффект для активного состояния */
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-.send-button:not(:disabled):hover::after {
-  animation: pulse 0.5s ease-in-out;
 }

@@ -103,20 +103,22 @@ function App() {
 
       {/* Поле ввода */}
       <div className="input-area">
-        <input
-          type="text"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          placeholder="Введите сообщение..."
-          onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-          disabled={isSending}
-        />
-        <button 
-          className="send-button"
-          onClick={sendMessage} 
-          disabled={!newMessage.trim() || isSending}
-          title="Отправить"
-        />
+        <div className="input-wrapper">
+          <input
+            type="text"
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            placeholder="Введите сообщение..."
+            onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+            disabled={isSending}
+          />
+          <button 
+            className="send-button"
+            onClick={sendMessage} 
+            disabled={!newMessage.trim() || isSending}
+            title="Отправить"
+          />
+        </div>
       </div>
     </div>
   );
